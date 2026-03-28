@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Old Grumpy's Parts | Heavy Equipment Parts Demo</title>
+  <meta name="description" content="Old Grumpy's Parts demo storefront for heavy equipment parts sales.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/images/logo.png" alt="Old Grumpy's Parts logo">
+        <div class="brand-copy">
+          <strong>Old Grumpy’s Parts</strong>
+          <span>Heavy Equipment Parts Demo Storefront</span>
+        </div>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="inventory.html" >Inventory</a>
+        <a href="about.html" >About</a>
+        <a href="contact.html" >Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a class="cart-pill" href="cart.html"><span data-cart-count>0</span> items</a>
+        <a class="button button-primary" href="cart.html">View Cart</a>
+      </div>
+    </div>
+  </header>
+  
+  <main>
+    <section class="hero section">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="section-kicker">Heavy Equipment Parts</div>
+          <h1 class="section-title">Rugged parts. <span class="accent">Straightforward buying.</span></h1>
+          <p class="section-intro">This demo storefront shows what Old Grumpy’s Parts could look like as a direct-to-customer parts website with inventory browsing, product pages, a cart flow, and a checkout experience.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="inventory.html">Browse Demo Inventory</a>
+            <a class="button button-secondary" href="contact.html">Request a Custom Part</a>
+          </div>
+          <ul class="hero-points">
+            <li><strong>Used & surplus parts</strong><br><span class="product-sku">Hydraulics, undercarriage, electrical, structural</span></li>
+            <li><strong>Machine fitment listed</strong><br><span class="product-sku">Mini excavators, mid-size excavators, compact equipment</span></li>
+            <li><strong>Freight-ready flow</strong><br><span class="product-sku">Built to support freight, pickup, or boxed shipment items</span></li>
+            <li><strong>Easy platform pivot later</strong><br><span class="product-sku">Can later route buyers to eBay, Shopify, or direct checkout</span></li>
+          </ul>
+          <div class="stat-grid">
+            <div class="detail-card stat-card"><strong>8</strong><span>Demo parts loaded</span></div>
+            <div class="detail-card stat-card"><strong>3</strong><span>Primary categories shown</span></div>
+            <div class="detail-card stat-card"><strong>1</strong><span>Working cart flow</span></div>
+          </div>
+          <div data-home-banner></div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-logo-wrap">
+            <img src="assets/images/logo.png" alt="Old Grumpy’s Parts logo">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-kicker">Featured Inventory</div>
+        <h2 class="section-title">Parts customers can actually shop</h2>
+        <p class="section-intro">This section gives her a real storefront feel instead of just a brochure site. Buyers can click through, add to cart, and see a clean purchase path.</p>
+        <div class="product-grid" data-featured-products></div>
+      </div>
+    </section>
+
+    <section class="section section-light">
+      <div class="container">
+        <div class="value-grid">
+          <article class="detail-card">
+            <h3>Looks established</h3>
+            <p>Even with placeholder inventory, the site presents as a real business with structure, categories, and a customer path.</p>
+          </article>
+          <article class="detail-card">
+            <h3>Shows buying flow</h3>
+            <p>Inventory, product detail, cart, and checkout pages help the customer visualize the full experience.</p>
+          </article>
+          <article class="detail-card">
+            <h3>Easy to pivot later</h3>
+            <p>If she decides to lean on eBay or another platform, the site can still act as the branded front door.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img src="assets/images/logo.png" alt="Old Grumpy's Parts logo">
+          <div>
+            <strong>Old Grumpy’s Parts</strong>
+            <div class="footer-copy">Demo website for showcasing an equipment-parts storefront concept.</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="inventory.html">Browse Inventory</a>
+        <a href="cart.html">Cart</a>
+        <a href="checkout.html">Checkout Demo</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <strong>Placeholder Contact Info</strong>
+        <div class="footer-copy">Jane Doe<br>Parts Manager<br>jane@example.com<br>(555) 123-4567</div>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/site.js"></script>
+</body>
+</html>
