@@ -1,31 +1,26 @@
-# Old Grumpy's Parts Demo Site
+# Old Grumpy's Parts Site
 
-Static multi-page storefront demo built for GitHub Pages.
+Static multi-page parts storefront built for GitHub Pages.
 
-## Pages included
-- `index.html` — homepage / brand pitch
-- `inventory.html` — searchable demo inventory
-- `product.html?id=...` — product detail page driven by JS data
-- `cart.html` — working cart using localStorage
-- `checkout.html` — polished checkout mockup
-- `about.html` — business story page
-- `contact.html` — placeholder contact page
+## Pages
+- `index.html` — homepage
+- `inventory.html` — searchable inventory
+- `product.html` — product detail template
+- `cart.html` — cart page
+- `checkout.html` — order request / checkout-style page
+- `about.html` — company info
+- `contact.html` — contact and part request page
 
 ## Notes
-- Contact info uses placeholder demo data for now.
-- Cart is local only and not tied to live payment processing.
-- Inventory is driven from `assets/js/products.js`.
-- Logo used: current selected Old Grumpy's Parts image asset.
+- Contact info uses placeholder data for now.
+- Product images are placeholder graphics and can be replaced with real photos later.
+- Cart data is stored in local browser storage.
 
-## GitHub Pages deploy
-1. Upload all files in this folder to a GitHub repository.
-2. In GitHub repo settings, enable **Pages**.
-3. Set deploy source to the root of the main branch.
-4. Point your subdomain to the GitHub Pages address.
+## Deploy
+Upload the folder contents to the root of a GitHub Pages repository.
 
-## Smart next upgrades
+## Next upgrades
 - Replace placeholder contact info
-- Replace SVG placeholders with real part photos
-- Add real categories and machine brands
-- Connect to Stripe / Shopify / WooCommerce if needed
-- Or use the site as the branded front-end and route checkout to eBay
+- Replace placeholder part graphics with real part photos
+- Add live contact form handling
+- Connect checkout or quote workflow to a real platform later

@@ -237,7 +237,7 @@
       mount.innerHTML = `
         <div class="empty-state cart-empty">
           <h2>Your cart is empty</h2>
-          <p>Add a few demo parts to see how this storefront flow works.</p>
+          <p>Add a few parts to your cart to review pricing, quantities, and estimated totals.</p>
           <a class="button button-primary" href="inventory.html">Browse Inventory</a>
         </div>
       `;
@@ -275,7 +275,7 @@
           <div class="summary-line"><span>Estimated Shipping</span><strong>${currency.format(totals.shipping)}</strong></div>
           <div class="summary-line"><span>Estimated Tax</span><strong>${currency.format(totals.tax)}</strong></div>
           <div class="summary-line total"><span>Total</span><strong>${currency.format(totals.total)}</strong></div>
-          <p class="summary-note">Demo checkout only. Replace later with Stripe, Shopify Buy Button, or a platform checkout flow.</p>
+          <p class="summary-note">Final totals, freight, and payment details can be confirmed after the order request is reviewed.</p>
           <a class="button button-primary full-width" href="checkout.html">Proceed to Checkout</a>
         </aside>
       </div>
@@ -299,27 +299,27 @@
 
     mount.innerHTML = `
       <div class="checkout-layout">
-        <form class="checkout-form" data-demo-checkout>
-          <div class="section-heading"><h2>Shipping Information</h2><p>Placeholder fields for the demo storefront.</p></div>
+        <form class="checkout-form" data-order-request>
+          <div class="section-heading"><h2>Shipping Information</h2><p>Provide the details needed to review the order and shipping options.</p></div>
           <div class="form-grid">
             <label><span>First Name</span><input required value="Jane"></label>
             <label><span>Last Name</span><input required value="Doe"></label>
             <label class="full"><span>Email</span><input required type="email" value="jane@example.com"></label>
-            <label class="full"><span>Street Address</span><input required value="123 Demo Lane"></label>
+            <label class="full"><span>Street Address</span><input required value="123 Main Street"></label>
             <label><span>City</span><input required value="Weatherford"></label>
             <label><span>State</span><input required value="TX"></label>
             <label><span>ZIP</span><input required value="76086"></label>
             <label><span>Phone</span><input required value="(555) 123-4567"></label>
           </div>
-          <div class="section-heading"><h2>Payment</h2><p>Styled as a checkout step. No live payment processing is attached.</p></div>
+          <div class="section-heading"><h2>Payment Details</h2><p>Payment and freight can be finalized after inventory and shipping are confirmed.</p></div>
           <div class="form-grid">
             <label class="full"><span>Card Number</span><input required value="4242 4242 4242 4242"></label>
             <label><span>Exp.</span><input required value="12/28"></label>
             <label><span>CVC</span><input required value="123"></label>
             <label><span>Name on Card</span><input required value="Jane Doe"></label>
           </div>
-          <button class="button button-primary full-width" type="submit">Complete Demo Checkout</button>
-          <p class="summary-note">This demo confirms the flow and clears the cart locally after submission.</p>
+          <button class="button button-primary full-width" type="submit">Submit Order Request</button>
+          <p class="summary-note">Submitting this form clears the cart locally and shows the order-request confirmation state.</p>
         </form>
         <aside class="summary-card">
           <h3>Order Summary</h3>
@@ -332,21 +332,21 @@
       </div>
     `;
 
-    const form = mount.querySelector('[data-demo-checkout]');
+    const form = mount.querySelector('[data-order-request]');
     form?.addEventListener('submit', (event) => {
       event.preventDefault();
       localStorage.removeItem('ogp-cart');
       updateCartCount();
-      showToast('Demo checkout completed');
-      window.location.href = 'index.html?demoOrder=1';
+      showToast('Order request submitted');
+      window.location.href = 'index.html?orderRequest=1';
     });
   }
 
   function showSuccessBanner() {
     const params = new URLSearchParams(window.location.search);
     const mount = document.querySelector('[data-home-banner]');
-    if (mount && params.get('demoOrder') === '1') {
-      mount.innerHTML = '<div class="success-banner">Demo order submitted. This is where a live store would send confirmation details.</div>';
+    if (mount && params.get('orderRequest') === '1') {
+      mount.innerHTML = '<div class="success-banner">Order request received. A team member can follow up on availability, shipping, and payment details.</div>';
       history.replaceState({}, '', 'index.html');
     }
   }
