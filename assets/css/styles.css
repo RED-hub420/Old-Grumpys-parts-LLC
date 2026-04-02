@@ -464,6 +464,15 @@ button, input, select, textarea { font: inherit; }
 }
 .footer-links { display: grid; gap: .5rem; justify-items: start; }
 .footer-copy { margin-top: .8rem; }
+.footer-powered {
+  margin-top: 1.6rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,.08);
+  text-align: center;
+  font-size: .9rem;
+  color: rgba(255,255,255,.72);
+  letter-spacing: .02em;
+}
 .center-copy { text-align: center; }
 .empty-state { padding: 2rem; }
 .toast {
