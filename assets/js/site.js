@@ -1,10 +1,7 @@
 (function () {
-  const currency = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    maximumFractionDigits: 0
-  });
+  const currency = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
 
+  // Replace this with the live Shopify manuals storefront or collection URL when it is ready.
   const MANUALS_STORE_URL = 'https://mbnr8k-2p.myshopify.com/';
 
   function getProducts() {
@@ -45,13 +42,11 @@
 
     const cart = getCart();
     const existing = cart.find((item) => item.id === productId);
-
     if (existing) {
       existing.quantity = Math.min(existing.quantity + quantity, product.stock);
     } else {
       cart.push({ id: productId, quantity: Math.min(quantity, product.stock) });
     }
-
     saveCart(cart);
     showToast(`${product.name} added to cart`);
   }
@@ -59,11 +54,8 @@
   function updateQuantity(productId, quantity) {
     let cart = getCart();
     cart = cart
-      .map((item) =>
-        item.id === productId ? { ...item, quantity: Number(quantity) } : item
-      )
+      .map((item) => (item.id === productId ? { ...item, quantity: Number(quantity) } : item))
       .filter((item) => item.quantity > 0);
-
     saveCart(cart);
     renderCartPage();
   }
@@ -79,11 +71,10 @@
       .map((item) => {
         const product = getProductById(item.id);
         if (!product) return null;
-
         return {
           ...product,
           quantity: item.quantity,
-          lineTotal: product.price * item.quantity
+          lineTotal: product.price * item.quantity,
         };
       })
       .filter(Boolean);
@@ -95,19 +86,16 @@
     const shipping = items.length ? Math.max(95, Math.round(subtotal * 0.04)) : 0;
     const tax = Math.round(subtotal * 0.0825);
     const total = subtotal + shipping + tax;
-
     return { subtotal, shipping, tax, total };
   }
 
   function showToast(message) {
     let toast = document.querySelector('.toast');
-
     if (!toast) {
       toast = document.createElement('div');
       toast.className = 'toast';
       document.body.appendChild(toast);
     }
-
     toast.textContent = message;
     toast.classList.add('show');
     clearTimeout(window.__ogpToastTimer);
@@ -117,7 +105,6 @@
   function renderFeatured() {
     const mount = document.querySelector('[data-featured-products]');
     if (!mount) return;
-
     mount.innerHTML = getProducts().slice(0, 4).map(cardMarkup).join('');
     bindAddButtons();
   }
@@ -150,9 +137,7 @@
 
   function bindAddButtons() {
     document.querySelectorAll('[data-add-to-cart]').forEach((button) => {
-      button.addEventListener('click', () =>
-        addToCart(button.getAttribute('data-add-to-cart'))
-      );
+      button.addEventListener('click', () => addToCart(button.getAttribute('data-add-to-cart')));
     });
   }
 
@@ -194,16 +179,7 @@
 
       if (search) {
         items = items.filter((item) =>
-          [
-            item.name,
-            item.machine,
-            item.category,
-            item.sku,
-            item.partNumber
-          ]
-            .join(' ')
-            .toLowerCase()
-            .includes(search)
+          [item.name, item.machine, item.category, item.sku, item.partNumber].join(' ').toLowerCase().includes(search)
         );
       }
 
@@ -221,25 +197,17 @@
 
       const results = document.querySelector('[data-results-count]');
       if (results) results.textContent = `${items.length} parts found`;
-
       bindAddButtons();
     };
 
-    [searchInput, categorySelect, sortSelect].forEach((el) => {
-      if (el) el.addEventListener('input', render);
-    });
-
-    [categorySelect, sortSelect].forEach((el) => {
-      if (el) el.addEventListener('change', render);
-    });
-
+    [searchInput, categorySelect, sortSelect].forEach((el) => el && el.addEventListener('input', render));
+    [categorySelect, sortSelect].forEach((el) => el && el.addEventListener('change', render));
     render();
   }
 
   function renderProductPage() {
     const mount = document.querySelector('[data-product-detail]');
     if (!mount) return;
-
     const params = new URLSearchParams(window.location.search);
     const product = getProductById(params.get('id')) || getProducts()[0];
 
@@ -280,7 +248,6 @@
         </div>
       </div>
     `;
-
     bindAddButtons();
   }
 
@@ -305,9 +272,7 @@
     mount.innerHTML = `
       <div class="cart-layout">
         <div class="cart-list">
-          ${items
-            .map(
-              (item) => `
+          ${items.map((item) => `
             <article class="cart-item">
               <img src="${item.image}" alt="${item.name}">
               <div class="cart-item-copy">
@@ -327,9 +292,7 @@
                 <button class="text-button" data-remove-item="${item.id}">Remove</button>
               </div>
             </article>
-          `
-            )
-            .join('')}
+          `).join('')}
         </div>
         <aside class="summary-card">
           <h3>Order Summary</h3>
@@ -344,15 +307,11 @@
     `;
 
     document.querySelectorAll('[data-qty-input]').forEach((input) => {
-      input.addEventListener('change', () =>
-        updateQuantity(input.getAttribute('data-qty-input'), input.value)
-      );
+      input.addEventListener('change', () => updateQuantity(input.getAttribute('data-qty-input'), input.value));
     });
 
     document.querySelectorAll('[data-remove-item]').forEach((button) => {
-      button.addEventListener('click', () =>
-        removeFromCart(button.getAttribute('data-remove-item'))
-      );
+      button.addEventListener('click', () => removeFromCart(button.getAttribute('data-remove-item')));
     });
   }
 
@@ -389,16 +348,7 @@
         </form>
         <aside class="summary-card">
           <h3>Order Summary</h3>
-          ${
-            items.length
-              ? items
-                  .map(
-                    (item) =>
-                      `<div class="summary-line"><span>${item.name} × ${item.quantity}</span><strong>${currency.format(item.lineTotal)}</strong></div>`
-                  )
-                  .join('')
-              : '<p>No items in cart yet.</p>'
-          }
+          ${items.length ? items.map((item) => `<div class="summary-line"><span>${item.name} × ${item.quantity}</span><strong>${currency.format(item.lineTotal)}</strong></div>`).join('') : '<p>No items in cart yet.</p>'}
           <div class="summary-line"><span>Subtotal</span><strong>${currency.format(totals.subtotal)}</strong></div>
           <div class="summary-line"><span>Estimated Shipping</span><strong>${currency.format(totals.shipping)}</strong></div>
           <div class="summary-line"><span>Estimated Tax</span><strong>${currency.format(totals.tax)}</strong></div>
@@ -420,10 +370,8 @@
   function showSuccessBanner() {
     const params = new URLSearchParams(window.location.search);
     const mount = document.querySelector('[data-home-banner]');
-
     if (mount && params.get('orderRequest') === '1') {
-      mount.innerHTML =
-        '<div class="success-banner">Order request received. A team member can follow up on availability, shipping, and payment details.</div>';
+      mount.innerHTML = '<div class="success-banner">Order request received. A team member can follow up on availability, shipping, and payment details.</div>';
       history.replaceState({}, '', 'index.html');
     }
   }
